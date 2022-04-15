@@ -1,6 +1,9 @@
+import MsgList from '../components/MsgList';
+
 const Home = () => (
   <>
-    <h1>Home</h1>
+    <h1>Message List</h1>
+    <MsgList />
   </>
 );
 
