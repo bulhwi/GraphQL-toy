@@ -6,5 +6,8 @@
 #node: v14.16.1
 #yarn: v1.22.18
 
+# local-api
 $ yarn run client 
+
+$ yarn run server
 ```

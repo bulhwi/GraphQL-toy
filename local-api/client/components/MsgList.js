@@ -10,7 +10,7 @@ const originalMsg = Array(50).fill(0).map((item, i) => ({
   timestamp: 1234567890123 + (50 - i) * 1000 * 60,
   text: `${50 - i} mock text`
 }));
-
+console.log(JSON.stringify(originalMsg));
 
 const MsgList = () => {
   const [msgs, setMsgs] = useState(originalMsg);
