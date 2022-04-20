@@ -14,4 +14,4 @@ $ yarn run server
 ```
 
 GraphQL Playground   
-[localhost:8000/graphql](localhost:8000/graphql)
+[localhost:8000/graphql](http://localhost:8000/graphql)
