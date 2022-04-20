@@ -12,3 +12,6 @@ $ yarn run client
 
 $ yarn run server
 ```
+
+GraphQL Playground   
+[localhost:8000/graphql](localhost:8000/graphql)
