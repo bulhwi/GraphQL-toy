@@ -6,7 +6,13 @@ const App = ({ Component, pageProps }) => {
   const clientRef = useRef(null);
   const getClient = () => {
     if(!clientRef.current) {
-      clientRef.current = new QueryClient();
+      clientRef.current = new QueryClient({
+        defaultOptions: {
+          queries: {
+            refetchOnWindowFocus: false
+          }
+        }
+      });
     }
     return clientRef.current;
   }

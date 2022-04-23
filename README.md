@@ -3,6 +3,7 @@
 * [GraphQL in Action](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791162245040&orderClick=LAG&Kc=)
 * [Code Helper Guide for GraphQL in Action](https://jscomplete.com/learn/gia)
 * [GraphQL in Action repository](https://github.com/jscomplete/graphql-in-action)
+* [React Query](https://react-query.tanstack.com/)
 * [GraphQL 스펙 문서](https://az.dev/graphql-spec)
 * [GraphQL, JavaScript 레퍼런스](https://az.dev/graphql-js)
 * [GraphQL 서버 라이브러리 리스트](https://az.dev/graphql-servers)

@@ -1,18 +1,20 @@
 import { useEffect, useState, useRef } from 'react';
 import {useRouter} from 'next/router';
+import { useQuery } from 'react-query';
 import MsgItem from './MsgItem';
 import MsgInput from './MsgInput';
-import queryClient from "../queryClient";
-import useInfiniteScroll from '../hooks/useInfiniteScroll';
+import { fetcher, QueryKeys } from '../queryClient';
+import { GET_MESSAGES } from '../graphql/message';
+// import useInfiniteScroll from '../hooks/useInfiniteScroll';
 
 const MsgList = ({smsgs, users}) => {
   const {query} = useRouter();
   const userId = query.userId || query.userid || '';
   const [msgs, setMsgs] = useState(smsgs);
   const [editingId, setEditingId] = useState(null);
-  const [hasNext, setHasNext] = useState(true);
-  const fetchMoreEl = useRef(null);
-  const intersecting = useInfiniteScroll(fetchMoreEl);
+  // const [hasNext, setHasNext] = useState(true);
+  // const fetchMoreEl = useRef(null);
+  // const intersecting = useInfiniteScroll(fetchMoreEl);
 
   const onCreate = async (text) => {
     const newMsg = await queryClient('post', '/messages', { text, userId });
@@ -59,6 +61,10 @@ const MsgList = ({smsgs, users}) => {
 
   const doneEdit = () => setEditingId(null);
 
+  const { data, error, isError } = useQuery(QueryKeys.MESSAGES, () => fetcher(GET_MESSAGES));
+
+  console.log(data, error, isError);
+
   const getMessages = async () => {
     let params = {
       cursor: msgs[msgs.length - 1]?.id || '',
@@ -71,11 +77,11 @@ const MsgList = ({smsgs, users}) => {
     setMsgs(msgs => [...msgs, ...newMsgs]);
   }
 
-  useEffect(() => {
-    if(intersecting && hasNext) {
-      getMessages();
-    }
-  }, [intersecting]);
+  // useEffect(() => {
+  //   if(intersecting && hasNext) {
+  //     getMessages();
+  //   }
+  // }, [intersecting]);
 
   return (
     <>
@@ -88,11 +94,11 @@ const MsgList = ({smsgs, users}) => {
                    startEdit={() => setEditingId(x.id)}
                    isEditing={editingId === x.id}
                    myId={userId}
-                   user={users[x.userId]}
+                   user={users.find(x => userId === x.id)}
           />
         )}
       </ul>
-      <div ref={fetchMoreEl} />
+      {/*<div ref={fetchMoreEl} />*/}
     </>
   );
 };
