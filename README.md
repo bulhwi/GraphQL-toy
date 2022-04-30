@@ -17,6 +17,8 @@
 $ yarn run client 
 
 $ yarn run server
+
+// http://localhost:3000/?userId=roy
 ```
 
 GraphQL Playground   
@@ -33,4 +35,4 @@ GraphQL Playground
     클라이언트는 필요한 것을 정확하게 요청하고  서버또한 요청받은 데이터를 정확하게 응답할 수 있다.
     -> 불필요한 데이터의 과다추출문제 해결
 ## 그래프QL 문제점
-* 보안
+* ...
