@@ -1,0 +1,41 @@
+# https://jscomplete.com/learn/gia#full-api-schema
+
+type User {
+    id: ID!
+    createdAt: String!
+    username: String!
+    name: String
+    # 추가될 User 객체용 필드
+}
+
+type Task {
+    id: ID!
+    createdAt: String!
+    content: String!
+    approachCount: Int!
+    # 추가될 Task 객체용 필드
+}
+
+type Approach {
+    id: ID!
+    createdAt: String!
+    content: String!
+    task: Task!
+    # 추가될 Approach 객체용 필드
+}
+
+query {
+    taskMainList {
+        id
+        content
+        # 태스크 객체 상의 필드
+    }
+}
+
+union TaskOrApproach = Task | Approach
+
+type Query {
+    taskMainList: [Task!]
+    search(term: String!): [TaskOrApproach!]
+    # 추가 쿼리 필드
+}
