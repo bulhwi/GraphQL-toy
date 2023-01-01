@@ -1,5 +1,5 @@
 import {Link as RouterLink} from 'react-router-dom';
-import { ColorModeSwitcher } from '../ColorModeSwicher';
+import {ColorModeSwitcher} from '../ColorModeSwicher';
 import {Box, Button, Flex, Link, Stack, useColorModeValue} from "@chakra-ui/react";
 import React from "react";
 
@@ -13,8 +13,8 @@ export default function NavBar(): JSX.Element {
       borderBottom={1}
       borderStyle="solid"
       borderColor={useColorModeValue('gray.200', 'gray.700')}
-      py={{ base:2 }}
-      px={{ base:4 }}
+      py={{base: 2}}
+      px={{base: 4}}
     >
       <Flex
         maxW={960}
@@ -23,7 +23,7 @@ export default function NavBar(): JSX.Element {
         align="center"
         m="auto"
       >
-        <Flex flex={{ base:1, md: 'auto'}}>
+        <Flex flex={{base: 1, md: 'auto'}}>
           <Link as={RouterLink}
                 to="/"
                 fontFamily="heading"
@@ -35,7 +35,7 @@ export default function NavBar(): JSX.Element {
         </Flex>
 
         <Stack justify="flex-end" direction="row" spacing={6}>
-          <ColorModeSwitcher />
+          <ColorModeSwitcher/>
           <Button
             fontSize="sm"
             fontWeight={400}
@@ -46,7 +46,7 @@ export default function NavBar(): JSX.Element {
             로그인
           </Button>
           <Button
-            display={{ base: 'none', md: 'inline-flex'}}
+            display={{base: 'none', md: 'inline-flex'}}
             fontSize="sm"
             fontWeight={600}
             // href="/signup"
