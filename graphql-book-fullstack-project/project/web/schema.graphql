@@ -1,0 +1,41 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+}
+
+type Director {
+    id: Int!
+    name: String!
+}
+
+type Film {
+    "영화 줄거리 및 설명"
+    description: String!
+    director: Director!
+    "제작자 고유 아이디"
+    director_id: Int!
+    "영화 장르"
+    genre: String!
+    "영화 고유 아이디"
+    id: Int!
+    "포스터 이미지 URL"
+    posterImg: String!
+    "개봉일"
+    release: String!
+    "영화 러닝 타임, minute"
+    runningTime: Float!
+    "영화 부제목"
+    subtitle: String
+    "영화 제목"
+    title: String!
+}
+
+type PaginatedFilms {
+    cursor: Int
+    films: [Film!]!
+}
+
+type Query {
+    films(cursor: Int = 1, limit: Int = 6): PaginatedFilms!
+}
