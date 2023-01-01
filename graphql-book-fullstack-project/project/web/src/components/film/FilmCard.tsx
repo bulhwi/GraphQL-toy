@@ -3,10 +3,11 @@ import { FilmsQuery } from '../../generated/graphql';
 import {AspectRatio, Box, LinkBox, Image, Heading, Stack, useColorModeValue, Text} from "@chakra-ui/react";
 
 interface FilmCardProps {
-  film: FilmsQuery['films'][0];
+  film: FilmsQuery['films']['films'][0];
 }
 
 export default function FilmCard({film}: FilmCardProps): React.ReactElement {
+
   return (
     <LinkBox as="article" my={6}>
       <Box
