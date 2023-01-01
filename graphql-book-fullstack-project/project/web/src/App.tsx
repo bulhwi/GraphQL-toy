@@ -1,18 +1,22 @@
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import { Box, ChakraProvider, Text, theme } from '@chakra-ui/react';
+import { ApolloProvider } from '@apollo/client';
+import { ChakraProvider, theme } from '@chakra-ui/react';
 import * as React from 'react';
-import FilmList from "./components/film/FilmList";
 import {createApolloClient} from "./apollo/createApolloClient";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {Main} from "./pages/Main";
 
 const apolloClient = createApolloClient();
 
-export const App = () => (
-  <ApolloProvider client={apolloClient}>
-    <ChakraProvider theme={theme}>
-      <Box>
-        <Text>Ghibli GraphQL</Text>
-        <FilmList />
-      </Box>
-    </ChakraProvider>
-  </ApolloProvider>
-);
+export const App: React.FC = () => {
+  return (
+    <ApolloProvider client={apolloClient}>
+      <ChakraProvider theme={theme}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Main />} />
+          </Routes>
+        </BrowserRouter>
+      </ChakraProvider>
+    </ApolloProvider>
+  )
+}
