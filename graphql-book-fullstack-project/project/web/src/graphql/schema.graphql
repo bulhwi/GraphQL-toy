@@ -37,5 +37,6 @@ type PaginatedFilms {
 }
 
 type Query {
+    film(filmId: Int!): Film
     films(cursor: Int = 1, limit: Int = 6): PaginatedFilms!
 }
