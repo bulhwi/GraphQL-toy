@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { FilmsQuery } from '../../generated/graphql';
-import {AspectRatio, Box, LinkBox, Image, Heading, Stack, useColorModeValue, Text} from "@chakra-ui/react";
+import {AspectRatio, Box, LinkBox, Image, Heading, Stack, useColorModeValue, Text, LinkOverlay} from "@chakra-ui/react";
 
 interface FilmCardProps {
   film: FilmsQuery['films']['films'][0];
@@ -24,13 +25,15 @@ export default function FilmCard({film}: FilmCardProps): React.ReactElement {
           </AspectRatio>
         </Box>
         <Stack>
-          <Heading
-            color={useColorModeValue('gray.700', 'white')}
-            fontSize="xl"
-            fontFamily="body"
-          >
-            {film.title}
-          </Heading>
+          <LinkOverlay as={Link} to={`/film/${film.id}`}>
+            <Heading
+              color={useColorModeValue('gray.700', 'white')}
+              fontSize="xl"
+              fontFamily="body"
+            >
+              {film.title}
+            </Heading>
+          </LinkOverlay>
         </Stack>
         <Stack spacing={0} fontSize="sm" mt={2}>
           <Text as="time" dateTime={film.release}  color="gray.500">

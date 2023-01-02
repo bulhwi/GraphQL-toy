@@ -4,6 +4,15 @@ schema {
     query: Query
 }
 
+type Cut {
+    "영화 아이디"
+    filmId: Int!
+    "명장면 고유 아이디"
+    id: Int!
+    "명장면 사진 주소"
+    src: String!
+}
+
 type Director {
     id: Int!
     name: String!
@@ -37,6 +46,7 @@ type PaginatedFilms {
 }
 
 type Query {
+    cuts(filmId: Int!): [Cut!]!
     film(filmId: Int!): Film
     films(cursor: Int = 1, limit: Int = 6): PaginatedFilms!
 }
