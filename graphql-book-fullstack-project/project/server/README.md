@@ -1,0 +1,1 @@
+* [class-validator github ](https://github.com/typestack/class-validator)
