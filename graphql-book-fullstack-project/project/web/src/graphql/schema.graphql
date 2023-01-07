@@ -5,6 +5,7 @@ schema {
 }
 
 type Cut {
+    film: Film
     "영화 아이디"
     filmId: Int!
     "명장면 고유 아이디"
@@ -46,6 +47,7 @@ type PaginatedFilms {
 }
 
 type Query {
+    cut(cutId: Int!): Cut
     cuts(filmId: Int!): [Cut!]!
     film(filmId: Int!): Film
     films(cursor: Int = 1, limit: Int = 6): PaginatedFilms!

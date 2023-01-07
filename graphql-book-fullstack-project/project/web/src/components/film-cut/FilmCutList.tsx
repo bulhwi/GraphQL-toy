@@ -1,13 +1,14 @@
 import React, {lazy} from 'react';
-import {Box, SimpleGrid, Spinner} from '@chakra-ui/react';
+import {Box, LinkBox, LinkOverlay, SimpleGrid, Spinner} from '@chakra-ui/react';
 import {useCutsQuery} from "../../generated/graphql";
 import {CutImage} from "./CutImage";
 
 interface FilmCutListProps {
   filmId: number;
+  onClick: (cutId: number) => void;
 };
 
-export const FilmCutList = ({filmId}: FilmCutListProps): React.ReactElement => {
+export const FilmCutList = ({filmId, onClick}: FilmCutListProps): React.ReactElement => {
   const {data, loading} = useCutsQuery({variables: {filmId}});
   console.log(data);
 
@@ -26,7 +27,13 @@ export const FilmCutList = ({filmId}: FilmCutListProps): React.ReactElement => {
       spacing={[2, null, 8]}
     >
       {data?.cuts.map((cut) => (
-        <CutImage src={cut.src} id={cut.id} key={cut.id}/>
+        <LinkBox as={"article"}>
+          <Box>
+            <LinkOverlay cursor={"pointer"} onClick={() => onClick(cut.id)}>
+              <CutImage src={cut.src} id={cut.id} key={cut.id} />
+            </LinkOverlay>
+          </Box>
+        </LinkBox>
       ))}
     </SimpleGrid>
   );
