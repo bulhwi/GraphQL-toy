@@ -20,6 +20,12 @@ type Director {
     name: String!
 }
 
+"필드 에러 타입"
+type FieldError {
+    field: String!
+    message: String!
+}
+
 type Film {
     "영화 줄거리 및 설명"
     description: String!
@@ -42,7 +48,15 @@ type Film {
     title: String!
 }
 
+"로그인 반환 데이터"
+type LoginResponse {
+    accessToken: String
+    errors: [FieldError!]
+    user: User
+}
+
 type Mutation {
+    login(loginInput: LoginInput!): LoginResponse!
     signUp(signUpInput: SignUpInput!): User!
 }
 
@@ -68,6 +82,12 @@ type User {
     updatedAt: String!
     "유저 이름"
     username: String!
+}
+
+"로그인 인풋 데이터"
+input LoginInput {
+    emailOrUsername: String!
+    password: String!
 }
 
 input SignUpInput {
