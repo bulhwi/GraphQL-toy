@@ -2,6 +2,7 @@
 
 schema {
     query: Query
+    mutation: Mutation
 }
 
 type Cut {
@@ -41,6 +42,10 @@ type Film {
     title: String!
 }
 
+type Mutation {
+    signUp(signUpInput: SignUpInput!): User!
+}
+
 type PaginatedFilms {
     cursor: Int
     films: [Film!]!
@@ -51,4 +56,22 @@ type Query {
     cuts(filmId: Int!): [Cut!]!
     film(filmId: Int!): Film
     films(cursor: Int = 1, limit: Int = 6): PaginatedFilms!
+}
+
+type User {
+    "생성 일자"
+    createdAt: String!
+    "유저 이메일"
+    email: String!
+    id: Int!
+    "업데이트 일자"
+    updatedAt: String!
+    "유저 이름"
+    username: String!
+}
+
+input SignUpInput {
+    email: String!
+    password: String!
+    username: String!
 }
