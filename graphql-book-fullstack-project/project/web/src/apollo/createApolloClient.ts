@@ -1,8 +1,18 @@
 import {ApolloClient, from, HttpLink, NormalizedCacheObject} from '@apollo/client';
 import { createApolloCache } from "./createApolloCache";
 import {onError} from "@apollo/client/link/error";
+import {setContext} from "@apollo/client/link/context";
 
+/**
+ * http uri
+ */
+const httpLink = new HttpLink({
+  uri: 'http://localhost:4000/graphql',
+});
 
+/**
+ * error log, network error log
+ */
 const errorLink = onError(({graphQLErrors, networkError, operation}) => {
   if(graphQLErrors) {
     graphQLErrors.forEach(({message, locations, path}) => {
@@ -20,12 +30,21 @@ const errorLink = onError(({graphQLErrors, networkError, operation}) => {
   }
 });
 
-const httpLink = new HttpLink({
-  uri: 'http://localhost:4000/graphql',
+/**
+ * header에 인증 토큰 세팅
+ */
+const authLink = setContext((request, prevContext) => {
+  const accessToken = localStorage.getItem('access_token');
+  return {
+    headers: {
+      ...prevContext.headers,
+      Authorization: accessToken ? `Bearer ${accessToken}` : '',
+    }
+  }
 });
 
 export const createApolloClient = (): ApolloClient<NormalizedCacheObject> =>
   new ApolloClient({
     cache: createApolloCache(),
-    link: from([errorLink, httpLink]),
+    link: from([authLink, errorLink, httpLink]),
   });
